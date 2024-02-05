@@ -1,5 +1,3 @@
-
-
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Topic Details";
@@ -9,6 +7,6 @@
 <hr />
 
 <p>Posts: @Html.DisplayFor(model => model.Posts)</p>
-@Html.ActionLink("Edit Topic", "Edit", "Topic", new { id = Model.TopicId }, new { @class = "btn btn-primary"}) ||
-@Html.ActionLink("Delete Topic", "Delete", "Topic", new { id = Model.TopicId }, new { @class = "btn btn-danger"}) ||
+@Html.ActionLink("Edit Topic", "Edit", "Topic", new { id = Model.TopicId }, new { @class = "btn btn-primary"}) |
+@Html.ActionLink("Delete Topic", "Delete", "Topic", new { id = Model.TopicId }, new { @class = "btn btn-danger"}) |
 @Html.ActionLink("Back To Topics", "Index", "Topic", null, new { @class = "btn btn-primary" })

@@ -1,0 +1,29 @@
+@{
+  User user = Model["User"];
+  string action = "Create";
+  string buttonText = "Create";
+  if (Model["Usage"] == "edit")
+  {
+    action = "Edit";
+    buttonText = "Save Edits";
+  }
+}
+
+<form asp-controller="User" asp-action=@action method="post">
+  @if(action == "Edit")
+  {
+    <input asp-for="@user.UserId" type="hidden" />
+  }
+  <div class="form-group mb-2">
+  <label asp-for="@user.Username"></label>
+  <input asp-for="@user.Username" placeholder="Username" ></input>
+  </div>
+  <input class="btn btn-primary" type="submit" value=@buttonText />
+</form>
+<hr />
+@if(action == "Edit")
+{
+  <form asp-controller="User" asp-action="Delete" asp-route-id=@user.UserId method="post">
+    <input class="btn btn-danger" type="submit" value="Delete"></input>
+  </form>
+}

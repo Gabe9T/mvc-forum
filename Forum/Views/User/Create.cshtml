@@ -1,0 +1,9 @@
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>Add A New User!<h1>
+<hr />
+@await Html.PartialAsync("_UserForm")
+<hr />
+@Html.ActionLink("Show All Users", "Index", "User", new { @class = "btn btn-primary",})

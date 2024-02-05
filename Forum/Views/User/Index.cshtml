@@ -16,7 +16,7 @@ else
 {
     @foreach(User user in Model)
     {
-         <li>@Html.ActionLink($"{user.Username}", "Details", new { id = user.UserId })</li>
+        <li>@Html.ActionLink($"{user.Username}", "Details", new { id = user.UserId })</li>
     }
 <h4>@Html.ActionLink("Add User", "Create")</h4>
 }

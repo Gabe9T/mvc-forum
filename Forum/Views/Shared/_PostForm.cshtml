@@ -1,0 +1,22 @@
+@{
+  Post post = Model["Post"];
+  SelectList selectList = Model["SelectList"];
+  string action = "Create";
+  string buttonText = "Post";
+  if (Model["Usage"] == "edit")
+  {
+    action = "Edit";
+    buttonText = "Save Post";
+  }
+}
+
+<form asp-controller="Post" asp-action=@action method="post">
+    @if(action == "Edit")
+  {
+    <input asp-for="@post.PostId" type="hidden" />
+  }
+  <input asp-for="@post.Title"></input>
+  <input asp-for="@post.Body"></input>
+  <select asp-for="@post.TopicId" asp-items=@selectList></select>
+  <input type="submit">@buttonText</input>
+</form>

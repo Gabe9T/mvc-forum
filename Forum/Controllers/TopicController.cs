@@ -73,9 +73,16 @@ namespace Forum.Controllers
             [HttpPost]
             public ActionResult Edit(Topic topic)
             {
+                if (!ModelState.IsValid)
+                {
+                    return View(topic);
+                }
+                else
+                {
                 _db.Topics.Update(topic);
                 _db.SaveChanges();
                 return RedirectToAction("Details", new { id = topic.TopicId });
+                }
             }
         }
 }
