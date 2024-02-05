@@ -3,10 +3,27 @@
     ViewData["Title"] = "Topic Details";
 }
 @model Forum.Models.Topic
-<h2>@($"{Model.Title}'s Details")</h2>
+<h2>@($"Discussing {Model.Title}")</h2>
 <hr />
 
-<p>Posts: @Html.DisplayFor(model => model.Posts)</p>
+<p>Posts: @Html.DisplayFor(model => model.Posts.Count)</p>
+@Html.ActionLink("Add Post", "Create", "Post", new { id = Model.TopicId}, new { @class = "btn btn-success"}) | 
 @Html.ActionLink("Edit Topic", "Edit", "Topic", new { id = Model.TopicId }, new { @class = "btn btn-primary"}) |
-@Html.ActionLink("Delete Topic", "Delete", "Topic", new { id = Model.TopicId }, new { @class = "btn btn-danger"}) |
+  <form asp-controller="Topic" asp-action="Delete" asp-route-id=@Model.TopicId method="post" style="display: inline;">
+    <button class="btn btn-danger" type="submit">Delete Topic</button>
+  </form> |
 @Html.ActionLink("Back To Topics", "Index", "Topic", null, new { @class = "btn btn-primary" })
+<hr />
+<ul>
+@if (Model.Posts.Count == 0)
+{
+  <li>No posts yet - @Html.ActionLink("create one!", "Create", "Post", new { id = Model.TopicId})</li>
+}
+else
+{
+  @foreach (Post post in Model.Posts)
+  {
+    <li>@post.Title  @post.Body - by @* @post.JoinEntities.First().User.Username *@</li>
+  }
+}
+</ul>

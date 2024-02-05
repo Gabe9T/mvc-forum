@@ -30,11 +30,13 @@ public class PostController : Controller
     }
     return topics;
   }
+
   public ActionResult Create(int topicId)
   {
     Dictionary<string, object> model = new() {
       {"Post", new Post()},
       {"SelectList", TopicSelectList(topicId)},
+      {"UserSelectList", new SelectList(_db.Users, "UserId", "Name")},
       {"Usage", "create"}
     };
     return View(model);
@@ -47,6 +49,7 @@ public class PostController : Controller
       Dictionary<string, object> model = new() {
       {"Post", new Post()},
       {"SelectList", TopicSelectList(post.TopicId)},
+      {"UserSelectList", new SelectList(_db.Users, "UserId", "Name")},
       {"Usage", "create"}
       };
       return View(model);
@@ -55,8 +58,17 @@ public class PostController : Controller
     {
       _db.Posts.Add(post);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", "Topic", new { id = post.TopicId});
     }
+  }
+  public ActionResult Details(int id)
+  {
+    Post targetPost = _db.Posts
+      .Include(post => post.Topic)
+      .Include(post => post.JoinEntities)
+      .ThenInclude(join => join.User)
+      .FirstOrDefault(post => post.PostId == id);
+    return View(targetPost);
   }
   public ActionResult Edit(int id)
   {
@@ -64,6 +76,7 @@ public class PostController : Controller
     Dictionary<string, object> model = new() {
       {"Post", new Post()},
       {"SelectList", TopicSelectList(targetPost.TopicId)},
+      {"UserSelectList", new SelectList(_db.Users, "UserId", "Name")},
       {"Usage", "create"}
     };
     return View(model);
@@ -77,6 +90,7 @@ public class PostController : Controller
       Dictionary<string, object> model = new() {
       {"Post", post},
       {"SelectList", TopicSelectList(post.TopicId)},
+      {"UserSelectList", new SelectList(_db.Users, "UserId", "Name")},
       {"Usage", "create"}
       };
       return View(model);

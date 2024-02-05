@@ -2,7 +2,6 @@
     Layout = "_Layout";
     ViewData["Title"] = "Topics";
 }
-
 @using Forum.Models;
 
 <h1>Topics</h1>
@@ -18,6 +17,6 @@ else
     {
          <li>@Html.ActionLink($"{topic.Title}", "Details", new { id = topic.TopicId })</li>
     }
-<h4>@Html.ActionLink("Add Topic", "Create")</h4>
+    @Html.ActionLink("Add Topic", "Create", "Topic", null, new { @class = "btn btn-primary"})
 }
-
+    @Html.ActionLink("Search Users", "Index", "User", null, new { @class = "btn btn-primary"})

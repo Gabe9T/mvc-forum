@@ -86,8 +86,8 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            User user = _db.Users.FirstOrDefault(u => u.UserId == id);
-            _db.Users.Remove(user);
+            User thisUser = _db.Users.FirstOrDefault(u => u.UserId == id);
+            _db.Users.Remove(thisUser);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

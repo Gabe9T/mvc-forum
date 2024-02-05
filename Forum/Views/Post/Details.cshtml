@@ -1,0 +1,7 @@
+@model Post
+
+<h1>@Model.Title</h1>
+<h5>Posted in @Model.Topic.Title | Posted by @Model.JoinEntities.First().User.Username</h5>
+<p>@Model.Body</p>
+
+

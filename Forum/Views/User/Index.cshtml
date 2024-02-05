@@ -7,17 +7,18 @@
 
 <h1>Users</h1>
 
-@if(Model.Count == 0)
+@if (Model.Count == 0)
 {
     <p>No Users Are Around D:</p>
     <h4>@Html.ActionLink("Add A New User!", "Create")</h4>
 }
 else
 {
-    @foreach(User user in Model)
+    @foreach (User user in Model)
     {
         <li>@Html.ActionLink($"{user.Username}", "Details", new { id = user.UserId })</li>
     }
-<h4>@Html.ActionLink("Add User", "Create")</h4>
-}
+    @Html.ActionLink("Add User", "Create", "User", null, new { @class = "btn btn-primary" })
 
+    @Html.ActionLink("Back", "Index", "Topic", null, new { @class = "btn btn-primary" })
+}

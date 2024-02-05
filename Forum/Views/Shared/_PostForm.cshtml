@@ -15,8 +15,9 @@
   {
     <input asp-for="@post.PostId" type="hidden" />
   }
-  <input asp-for="@post.Title"></input>
-  <input asp-for="@post.Body"></input>
+  <input asp-for="@post.Title" placeholder="Post Title"></input>
+  <input asp-for="@post.Body" placeholder="Post Body"></input>
+  <label>Posting in:</label>
   <select asp-for="@post.TopicId" asp-items=@selectList></select>
-  <input type="submit">@buttonText</input>
+  <button class="btn btn-success" type="submit">@buttonText</button>
 </form>

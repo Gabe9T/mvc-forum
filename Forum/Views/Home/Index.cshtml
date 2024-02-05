@@ -1,9 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
+    
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome Forum</h1>
-    <h5>@Html.ActionLink("search forums", "Index", "Topic")</h5>
-    <h5>@Html.ActionLink("search users", "Index", "User")</h5>
+    <h1 class="display-4">Forum</h1>
+    @Html.ActionLink("Search Forums", "Index", "Topic", null, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Search Users", "Index", "User", null, new { @class = "btn btn-primary"})
 </div>
