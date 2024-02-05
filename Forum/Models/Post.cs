@@ -6,6 +6,7 @@ public class Post
 {
   public int PostId { get; set; }
   [Required]
+  [MaxLength(255)]
   public string Title { get; set; }
   [Required]
   public string Body { get; set; }
