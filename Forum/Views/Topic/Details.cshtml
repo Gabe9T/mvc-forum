@@ -1,0 +1,14 @@
+
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Topic Details";
+}
+@model Forum.Models.Topic
+<h2>@($"{Model.Title}'s Details")</h2>
+<hr />
+
+<p>Posts: @Html.DisplayFor(model => model.Posts)</p>
+@Html.ActionLink("Edit Topic", "Edit", "Topic", new { id = Model.TopicId }, new { @class = "btn btn-primary"}) ||
+@Html.ActionLink("Delete Topic", "Delete", "Topic", new { id = Model.TopicId }, new { @class = "btn btn-danger"}) ||
+@Html.ActionLink("Back To Topics", "Index", "Topic", null, new { @class = "btn btn-primary" })

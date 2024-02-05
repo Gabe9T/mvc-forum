@@ -1,0 +1,29 @@
+@{
+  Topic topic = Model["Topic"];
+  string action = "Create";
+  string buttonText = "Create";
+  if (Model["Usage"] == "edit")
+  {
+    action = "Edit";
+    buttonText = "Save Edits";
+  }
+}
+
+<form asp-controller="Topic" asp-action=@action method="post">
+  @if(action == "Edit")
+  {
+    <input asp-for="@topic.TopicId" type="hidden" />
+  }
+  <div class="form-group mb-2">
+  <label asp-for="@topic.Title"></label>
+  <input asp-for="@topic.Title" placeholder="Topic Title" ></input>
+  </div>
+  <input class="btn btn-primary" type="submit" value=@buttonText />
+</form>
+<hr />
+@if(action == "Edit")
+{
+  <form asp-controller="Topic" asp-action="Delete" asp-route-id=@topic.TopicId method="post">
+    <input class="btn btn-danger" type="submit" value="Delete"></input>
+  </form>
+}

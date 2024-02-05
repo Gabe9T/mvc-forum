@@ -1,0 +1,23 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Topics";
+}
+
+@using Forum.Models;
+
+<h1>Topics</h1>
+
+@if(Model.Count == 0)
+{
+    <p>You Dont Have Any Topics D:</p>
+    <h4>@Html.ActionLink("Create A New Topic Here!", "Create")</h4>
+}
+else
+{
+    @foreach(Topic topic in Model)
+    {
+         <li>@Html.ActionLink($"{topic.Title}", "Details", new { id = topic.TopicId })</li>
+    }
+<h4>@Html.ActionLink("Add Topic", "Create")</h4>
+}
+

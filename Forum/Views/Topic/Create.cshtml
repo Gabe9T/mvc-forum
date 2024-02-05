@@ -1,0 +1,9 @@
+@{
+    ViewData["Title"] = "Topics";
+}
+
+<h1>Add A New Topic!<h1>
+<hr />
+@await Html.PartialAsync("_TopicForm")
+<hr />
+@Html.ActionLink("Show All Topics", "Index", "Topic", new { @class = "btn btn-primary",})
