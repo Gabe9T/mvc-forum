@@ -23,7 +23,7 @@ else
 {
   @foreach (Post post in Model.Posts)
   {
-    <li>@post.Title  @post.Body - by @* @post.JoinEntities.First().User.Username *@</li>
+    <li>@Html.ActionLink($"{@post.Title}", "Details", "Post", new { id = post.PostId})</li>
   }
 }
 </ul>

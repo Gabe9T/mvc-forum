@@ -1,0 +1,15 @@
+@* @{
+  SelectList selectList = Model["selectList"];
+  Post targetPost = Model["post"];
+  UserPostJoinEntity = Model["joinEntity"]
+}
+
+<h2>Add a user to this post</h2>
+<form asp-controller="Post" asp-action="AddUser" method="post">
+  <input asp-for=@targetPost.PostId type="hidden" />
+  @Html.Label("Select user")
+  <select asp-for=@targetPost.UserId value=@selectList></select>
+
+  <button type="submit">Add</button>
+</form> *@
+

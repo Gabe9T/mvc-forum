@@ -9,6 +9,8 @@ public class ForumContext : DbContext
 
   public DbSet<Post> Posts { get; set; }
 
+  public DbSet<UserPostJoinEntity> UserPostJoinEntities { get; set; }
+
   public ForumContext(DbContextOptions options) : base(options) { }
 
 }

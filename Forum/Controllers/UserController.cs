@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Forum.Models;
 
 namespace Forum.Controllers
@@ -54,7 +53,7 @@ namespace Forum.Controllers
             return View(targetUser);
         }
 
-         public ActionResult Edit(int id)
+        public ActionResult Edit(int id)
         {
             User targetUser = _db.Users.FirstOrDefault(user => user.UserId == id);
             Dictionary<string, object> model = new() {
@@ -91,6 +90,5 @@ namespace Forum.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         }
 }        

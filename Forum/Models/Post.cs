@@ -13,5 +13,6 @@ public class Post
   [Required]
   public int TopicId { get; set; }
   public Topic Topic { get; set; }
+
   public List<UserPostJoinEntity> JoinEntities { get; }
 }

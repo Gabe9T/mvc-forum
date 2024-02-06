@@ -15,7 +15,7 @@ else
 {
     @foreach(Topic topic in Model)
     {
-         <li>@Html.ActionLink($"{topic.Title}", "Details", new { id = topic.TopicId })</li>
+        <li>@Html.ActionLink($"{topic.Title}", "Details", new { id = topic.TopicId })</li>
     }
     @Html.ActionLink("Add Topic", "Create", "Topic", null, new { @class = "btn btn-primary"})
 }

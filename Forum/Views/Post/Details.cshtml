@@ -1,7 +1,9 @@
 @model Post
 
 <h1>@Model.Title</h1>
-<h5>Posted in @Model.Topic.Title | Posted by @Model.JoinEntities.First().User.Username</h5>
-<p>@Model.Body</p>
+<p>Posted In:<em> @Model.Topic.Title</em></p>
 
+<p>@Model.Body</p>
+@Html.ActionLink("Add User", "Post", "AddUser", new { id = Model.PostId}, new { @class = "btn btn-success"})
+@Html.ActionLink("Back", "Details", "Topic", new {id = Model.TopicId}, new { @class = "btn btn-primary"})
 

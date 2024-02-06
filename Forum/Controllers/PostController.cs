@@ -58,18 +58,25 @@ public class PostController : Controller
     {
       _db.Posts.Add(post);
       _db.SaveChanges();
-      return RedirectToAction("Index", "Topic", new { id = post.TopicId});
+      return RedirectToAction("Index", "Topic", new { id = post.TopicId });
     }
   }
+
   public ActionResult Details(int id)
-  {
+{
     Post targetPost = _db.Posts
-      .Include(post => post.Topic)
-      .Include(post => post.JoinEntities)
-      .ThenInclude(join => join.User)
-      .FirstOrDefault(post => post.PostId == id);
+        .Include(post => post.Topic)
+        .Include(post => post.JoinEntities)
+        .ThenInclude(join => join.User)
+        .FirstOrDefault(post => post.PostId == id);
+
+    if (targetPost == null)
+    {
+        return NotFound();
+    }
+
     return View(targetPost);
-  }
+}
   public ActionResult Edit(int id)
   {
     Post targetPost = _db.Posts.FirstOrDefault(post => post.PostId == id);
@@ -109,6 +116,21 @@ public class PostController : Controller
     int topicId = targetPost.TopicId;
     _db.Posts.Remove(targetPost);
     _db.SaveChanges();
-    return RedirectToAction("Details", "Topic", new { id = topicId});
+    return RedirectToAction("Details", "Topic", new { id = topicId });
+  }
+  public ActionResult AddUser(Post post, int userId)
+  {
+    #nullable enable
+    UserPostJoinEntity? joinEntity = _db
+    .UserPostJoinEntities
+    .FirstOrDefault(join => join.UserId == userId && join.PostId == post.PostId);
+    #nullable disable
+    if (joinEntity == null && userId != 0)
+    {
+      _db.UserPostJoinEntities.Add(new UserPostJoinEntity() { UserId = userId, PostId = post.PostId });
+      _db.SaveChanges();
+      return RedirectToAction("Index", "Topic", new { id = post.TopicId });
+    }
+    return RedirectToAction("Index", "Topic", new { id = post.TopicId });
   }
 }

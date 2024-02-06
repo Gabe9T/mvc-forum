@@ -1,18 +1,68 @@
+@media (min-width: 768px) {
+	html {
+		font-size: 16px;
+	}
+}
+
 html {
+	position: relative;
+	min-height: 100%;
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+	margin-bottom: 60px;
+}
+
+input {
+	background-color: whitesmoke;
+	border-radius: 3px;
+	border-color: transparent;
+}
+
+textarea {
+	background-color: whitesmoke;
+	border-radius: 3px;
+	border-color: transparent;
+}
+
+input:hover {
+	border-color: lightcoral;
+}
+
+textarea:hover {
+	border-color: lightcoral;
+}
+
+button {
+	background-color: transparent;
+	border: none;
+	color: whitesmoke;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+button:hover {
+	background-color: whitesmoke;
+	border-color: lightcoral;
+}
+
+a:hover {
+	text-decoration: none;
+	border-color: lightcoral;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+img {
+	width:200px;
+}
+
+hr{
+	color: black;
 }

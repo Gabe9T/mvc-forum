@@ -3,7 +3,7 @@
     ViewData["Title"] = "User Details";
 }
 @model Forum.Models.User
-<h2>@($"{Model.Username}'s Details")</h2>
+<h2>@($"{Model.Username}'s Posts")</h2>
 <hr />
 <p></p>
 <ul>
@@ -13,9 +13,10 @@
 }
 else
 {
-    @foreach(UserPostJoinEntity userPost in Model.JoinEntities) {
-        <li>@userPost.Post.Title</li>
+    @foreach(UserPostJoinEntity joinEntity in Model.JoinEntities) {
+        <li>@Html.ActionLink($"{@joinEntity.Post.Title}", "Details", "Post", new { id = joinEntity.Post.PostId })</li>
     }
+    
 }
 </ul>
 @Html.ActionLink("Edit User", "Edit", "User", new { id = Model.UserId }, new { @class = "btn btn-primary"}) |
