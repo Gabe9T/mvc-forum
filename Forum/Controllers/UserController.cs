@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Forum.Models;
 
 namespace Forum.Controllers
@@ -89,6 +90,28 @@ namespace Forum.Controllers
             _db.Users.Remove(thisUser);
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult AddPost(int id)
+        {
+            User targetUser = _db.Users.FirstOrDefault(user => user.UserId == id);
+            Dictionary<string, object> model = new() {
+                {"postList", new SelectList(_db.Posts, "PostId", "Title")},
+                {"user", targetUser},
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddPost(User user, int postId)
+        {
+            #nullable enable
+            UserPostJoinEntity? joinEntity = _db.UserPostJoinEntities.FirstOrDefault(join => join.UserId == user.UserId && join.PostId == postId);
+            #nullable disable
+            if (joinEntity == null && postId != 0)
+            {
+                _db.UserPostJoinEntities.Add(new UserPostJoinEntity(){ PostId = postId, UserId = user.UserId});
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Details", new { id = user.UserId });
         }
         }
 }        

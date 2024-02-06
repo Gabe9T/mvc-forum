@@ -1,0 +1,13 @@
+@{
+  SelectList selectList = Model["postList"];
+  User targetUser = Model["user"];
+}
+
+<h2>Add a user to this post</h2>
+<form asp-controller="User" asp-action="AddPost" method="post">
+  <input asp-for=@targetUser.UserId type="hidden" />
+  @Html.Label("Select post")
+  @Html.DropDownList("PostId", selectList)
+
+  <button type="submit">Add</button>
+</form>

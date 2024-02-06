@@ -84,7 +84,7 @@ public class PostController : Controller
       {"Post", new Post()},
       {"SelectList", TopicSelectList(targetPost.TopicId)},
       {"UserSelectList", new SelectList(_db.Users, "UserId", "Name")},
-      {"Usage", "create"}
+      {"Usage", "edit"}
     };
     return View(model);
   }
@@ -118,6 +118,16 @@ public class PostController : Controller
     _db.SaveChanges();
     return RedirectToAction("Details", "Topic", new { id = topicId });
   }
+  public ActionResult AddUser(int id)
+  {
+    Post targetPost = _db.Posts.FirstOrDefault(user => user.PostId == id);
+    Dictionary<string, object> model = new() {
+                {"userList", new SelectList(_db.Users, "UserId", "Username")},
+                {"post", targetPost},
+            };
+    return View(model);
+  }
+  [HttpPost]
   public ActionResult AddUser(Post post, int userId)
   {
     #nullable enable
@@ -129,8 +139,7 @@ public class PostController : Controller
     {
       _db.UserPostJoinEntities.Add(new UserPostJoinEntity() { UserId = userId, PostId = post.PostId });
       _db.SaveChanges();
-      return RedirectToAction("Index", "Topic", new { id = post.TopicId });
     }
-    return RedirectToAction("Index", "Topic", new { id = post.TopicId });
+    return RedirectToAction("Details", new { id = post.PostId });
   }
 }

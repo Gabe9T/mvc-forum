@@ -4,6 +4,10 @@
 <p>Posted In:<em> @Model.Topic.Title</em></p>
 
 <p>@Model.Body</p>
-@Html.ActionLink("Add User", "Post", "AddUser", new { id = Model.PostId}, new { @class = "btn btn-success"})
-@Html.ActionLink("Back", "Details", "Topic", new {id = Model.TopicId}, new { @class = "btn btn-primary"})
-
+    @Html.ActionLink("Add User", "Post", "AddUser", new { id = Model.PostId}, new { @class = "btn btn-success"}) |
+    @Html.ActionLink("Edit Post", "Edit", "Post", new { id = Model.PostId }, new { @class = "btn btn-warning"}) |
+    <form asp-controller="Post" asp-action="Delete" asp-route-id=@Model.PostId method="post" style="display: inline;">
+    <button class="btn btn-danger" type="submit">Delete Topic</button>
+    </form> |
+    
+    @Html.ActionLink("Back", "Details", "Topic", new {id = Model.TopicId}, new { @class = "btn btn-primary"})

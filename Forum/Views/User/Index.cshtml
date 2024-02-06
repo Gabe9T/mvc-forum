@@ -19,6 +19,6 @@ else
         <li>@Html.ActionLink($"{user.Username}", "Details", new { id = user.UserId })</li>
     }
     @Html.ActionLink("Add User", "Create", "User", null, new { @class = "btn btn-primary" })
-
-    @Html.ActionLink("Back", "Index", "Topic", null, new { @class = "btn btn-primary" })
+<br />
+    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-primary" })
 }
